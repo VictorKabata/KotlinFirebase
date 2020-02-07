@@ -18,6 +18,10 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_register)
 
+        binding.buttonSelectPhoto.setOnClickListener{
+            selectPhoto()
+        }
+
         binding.registerButton.setOnClickListener {
             registerUser()
         }
@@ -25,6 +29,13 @@ class RegisterActivity : AppCompatActivity() {
         binding.goToLoginTextView.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
         }
+    }
+
+    private fun selectPhoto() {
+        val intent=Intent(Intent.ACTION_PICK)
+        intent.type="image/*"
+
+        startActivityForResult(intent, 0)
     }
 
     private fun registerUser(){
@@ -56,4 +67,7 @@ class RegisterActivity : AppCompatActivity() {
             }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+    }
 }
