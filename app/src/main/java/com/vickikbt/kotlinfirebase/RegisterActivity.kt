@@ -40,7 +40,6 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         if (username.isEmpty()||email.isEmpty()||password.isEmpty()){
-            Toast.makeText(this, "Enter all fields!!", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -48,10 +47,12 @@ class RegisterActivity : AppCompatActivity() {
             .addOnCompleteListener {
                 if(!it.isSuccessful) return@addOnCompleteListener
                 Toast.makeText(this, "Registration Successful!", Toast.LENGTH_SHORT).show()
-                Log.e("Registration", "User created successfully: ${it.result?.user?.uid}")
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
             }
             .addOnFailureListener {
                 Log.e("Registration", "Failed to create user because: ${it.message}")
+                Toast.makeText(this, "Failed to create user because: ${it.message}", Toast.LENGTH_SHORT).show()
             }
     }
 
