@@ -55,6 +55,7 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:2.2.3"
 
     //FireBase Dependencies
+    implementation 'com.google.firebase:firebase-core:17.2.2'
     implementation 'com.google.firebase:firebase-auth:19.2.0'
     implementation 'com.google.firebase:firebase-database:19.2.1'
     implementation 'com.google.firebase:firebase-storage:19.1.1'
