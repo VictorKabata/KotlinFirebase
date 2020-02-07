@@ -14,10 +14,16 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
-        binding.goToRegisterTextView.setOnClickListener{
+        var email = binding.emailAddressLogin.text
+        var password = binding.passwordLogin.text
+
+        binding.goToRegisterTextView.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
-
-
     }
+
+    private fun loginUser() {
+        //TODO(2): Add code to login user here
+    }
+
 }
