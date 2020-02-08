@@ -1,6 +1,5 @@
 package com.vickikbt.kotlinfirebase.adapter
 
-import com.squareup.picasso.Picasso
 import com.vickikbt.kotlinfirebase.R
 import com.vickikbt.kotlinfirebase.model.Users
 import com.xwray.groupie.Item

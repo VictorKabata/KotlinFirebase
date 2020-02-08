@@ -14,7 +14,6 @@ import com.vickikbt.kotlinfirebase.databinding.ActivityNewMessageBinding
 import com.vickikbt.kotlinfirebase.model.Users
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.activity_new_message.*
 
 class NewMessageActivity : AppCompatActivity() {
     lateinit var binding:ActivityNewMessageBinding
@@ -35,16 +34,16 @@ class NewMessageActivity : AppCompatActivity() {
 
         databaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
-                val adapter = GroupAdapter<ViewHolder>()
+                val rvAdapter = GroupAdapter<ViewHolder>()
 
                 p0.children.forEach {
                     Log.e("New Message", it.toString())
                     val user = it.getValue(Users::class.java)
                     if (user != null) {
-                        adapter.add(userItem)
+                        rvAdapter.add(userItem)
                     }
                 }
-                binding.recyclerviewNewMessage.adapter = adapter
+                binding.recyclerviewNewMessage.adapter = rvAdapter
             }
 
             override fun onCancelled(p0: DatabaseError) {
