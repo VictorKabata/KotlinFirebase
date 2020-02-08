@@ -14,6 +14,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.vickikbt.kotlinfirebase.data.Users
 import com.vickikbt.kotlinfirebase.databinding.ActivityRegisterBinding
+import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -58,8 +59,6 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun registerUser() {
-        uploadImageToFirebase()
-
         val username = binding.usernameEditText.text.toString()
         val email = binding.emailEditText.text.toString()
         val password = binding.passwordEdiText.text.toString()
@@ -81,6 +80,8 @@ class RegisterActivity : AppCompatActivity() {
 
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
+                uploadImageToFirebase()
+
                 if (!it.isSuccessful) return@addOnCompleteListener
                 Toast.makeText(this, "Registration Successful!", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, LoginActivity::class.java))
@@ -99,26 +100,32 @@ class RegisterActivity : AppCompatActivity() {
     private fun uploadImageToFirebase() {
         if (selectedPhotoUri == null) return
 
-        val filepath=FirebaseAuth.getInstance().uid?: ""
-        val storageRef = FirebaseStorage.getInstance().getReference("/Profile Pictures/$filepath")
+        val filename = UUID.randomUUID().toString()
+        val storageRef = FirebaseStorage.getInstance().getReference("/Profile Pictures/$filename")
         storageRef.putFile(selectedPhotoUri!!)
             .addOnSuccessListener {
                 Log.e("RegisterActivity", "Profile Picture Uploaded Successfully")
+
+                storageRef.downloadUrl.addOnSuccessListener {
+                    saveUserToFirebaseDatabase(it.toString())
+                    Log.e("RegisterActivity", "Uploaded user data.")
+                }
+                    .addOnFailureListener {
+                        Log.e("RegisterActivity", "Failed to upload user data.")
+                    }
             }
 
-        storageRef.downloadUrl.addOnSuccessListener {
-            saveUserToFirebaseDatabase(it.toString())
-        }
+
     }
 
     private fun saveUserToFirebaseDatabase(profileImageUrl: String) {
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val databaseRef = FirebaseDatabase.getInstance().getReference("/Users/$uid")
 
-        val email = binding.emailEditText.text.toString()
-        val username = binding.usernameEditText.text.toString()
+        val emaildb = binding.emailEditText.text.toString()
+        val usernamedb = binding.usernameEditText.text.toString()
 
-        val users = Users(username, email, uid, profileImageUrl)
+        val users = Users(usernamedb, emaildb, uid, profileImageUrl)
 
         databaseRef.setValue(users)
             .addOnSuccessListener {
