@@ -44,6 +44,9 @@ class RegisterActivity : AppCompatActivity() {
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
             selectedPhotoUri = data.data
             val bitMap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
+
+            binding.selectPhotoImageView.setImageBitmap(bitMap)
+            binding.buttonSelectPhoto.alpha = 0f
         }
     }
 
@@ -55,6 +58,8 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun registerUser() {
+        uploadImageToFirebase()
+
         val username = binding.usernameEditText.text.toString()
         val email = binding.emailEditText.text.toString()
         val password = binding.passwordEdiText.text.toString()
@@ -106,13 +111,13 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun saveUserToFirebaseDatabase(profileImageUrl: String) {
-        val uid = FirebaseAuth.getInstance().uid?: ""
+        val uid = FirebaseAuth.getInstance().uid ?: ""
         val databaseRef = FirebaseDatabase.getInstance().getReference("/Users/$uid")
 
-        val email=binding.emailEditText.toString()
-        val username=binding.usernameEditText.toString()
+        val email = binding.emailEditText.toString()
+        val username = binding.usernameEditText.toString()
 
-        val users=Users(username,email, uid, profileImageUrl)
+        val users = Users(username, email, uid, profileImageUrl)
 
         databaseRef.setValue(users)
             .addOnSuccessListener {
