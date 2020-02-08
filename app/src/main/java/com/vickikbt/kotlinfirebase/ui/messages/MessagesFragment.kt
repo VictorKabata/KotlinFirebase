@@ -3,6 +3,7 @@ package com.vickikbt.kotlinfirebase.ui.messages
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
@@ -22,31 +23,14 @@ class MessagesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         dashboardViewModel = ViewModelProvider(this).get(MessagesViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_messages, container, false)
+        binding =DataBindingUtil.inflate( inflater, R.layout.fragment_messages, container, false)
 
         binding.fabNewMessage.setOnClickListener{
-            startActivity(Intent(activity, NewMessage::class.java))
+            val intent=Intent(activity, NewMessage::class.java)
+            startActivity(intent)
         }
 
-        return root
+        return binding.root
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.messages_overflow_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.action_new_message->{
-                startActivity(Intent(activity, NewMessage::class.java))
-            }
-
-            R.id.action_logout_messages->{
-                FirebaseAuth.getInstance().signOut()
-                startActivity(Intent(activity, LoginActivity::class.java))
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
 }
