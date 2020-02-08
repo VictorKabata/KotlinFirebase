@@ -10,6 +10,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import com.vickikbt.kotlinfirebase.data.Users
 import com.vickikbt.kotlinfirebase.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
@@ -17,6 +20,7 @@ class RegisterActivity : AppCompatActivity() {
     lateinit var binding: ActivityRegisterBinding
     private val firebaseAuth = FirebaseAuth.getInstance()
     var selectedPhotoUri: Uri? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +44,6 @@ class RegisterActivity : AppCompatActivity() {
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
             selectedPhotoUri = data.data
             val bitMap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
-
-
         }
     }
 
@@ -89,8 +91,34 @@ class RegisterActivity : AppCompatActivity() {
             }
     }
 
-    private fun uploadImageToFirebase(){
-        
+    private fun uploadImageToFirebase() {
+        if (selectedPhotoUri == null) return
+
+        val storageRef = FirebaseStorage.getInstance().getReference("/Profile Pictures")
+        storageRef.putFile(selectedPhotoUri!!)
+            .addOnSuccessListener {
+                Log.e("RegisterActivity", "Profile Picture Uploaded Successfully")
+            }
+
+        storageRef.downloadUrl.addOnSuccessListener {
+            saveUserToFirebaseDatabase(it.toString())
+        }
+    }
+
+    private fun saveUserToFirebaseDatabase(profileImageUrl: String) {
+        val uid = FirebaseAuth.getInstance().uid?: ""
+        val databaseRef = FirebaseDatabase.getInstance().getReference("/Users/$uid")
+
+        val email=binding.emailEditText.toString()
+        val username=binding.usernameEditText.toString()
+
+        val users=Users(username,email, uid, profileImageUrl)
+
+        databaseRef.setValue(users)
+            .addOnSuccessListener {
+                Log.e("Registration", "Saved user data to Firebase.")
+            }
+
     }
 
 }
