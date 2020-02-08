@@ -12,14 +12,14 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_messages"
         android:name="com.vickikbt.kotlinfirebase.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:label="@string/messages"
+        tools:layout="@layout/fragment_messages" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.vickikbt.kotlinfirebase.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
