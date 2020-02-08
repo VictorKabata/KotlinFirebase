@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.vickikbt.kotlinfirebase.MainActivity
 import com.vickikbt.kotlinfirebase.R
 import com.vickikbt.kotlinfirebase.databinding.ActivityLoginBinding
 

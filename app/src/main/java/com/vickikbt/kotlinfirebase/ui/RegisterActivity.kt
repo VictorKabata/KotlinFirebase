@@ -125,10 +125,10 @@ class RegisterActivity : AppCompatActivity() {
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val databaseRef = FirebaseDatabase.getInstance().getReference("/Users/$uid")
 
-        val emaildb = binding.emailEditText.text.toString()
-        val usernamedb = binding.usernameEditText.text.toString()
+        val email = binding.emailEditText.text.toString()
+        val username = binding.usernameEditText.text.toString()
 
-        val users = Users(usernamedb, emaildb, uid, profileImageUrl)
+        val users = Users(username, email, uid, profileImageUrl)
 
         databaseRef.setValue(users)
             .addOnSuccessListener {
