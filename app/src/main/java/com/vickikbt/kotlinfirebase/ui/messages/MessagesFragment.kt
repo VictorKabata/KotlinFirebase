@@ -8,11 +8,13 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.vickikbt.kotlinfirebase.ui.NewMessage
 import com.vickikbt.kotlinfirebase.R
+import com.vickikbt.kotlinfirebase.databinding.FragmentMessagesBinding
 import com.vickikbt.kotlinfirebase.ui.LoginActivity
 
 class MessagesFragment : Fragment() {
 
     private lateinit var dashboardViewModel: MessagesViewModel
+    private lateinit var binding:FragmentMessagesBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,6 +23,10 @@ class MessagesFragment : Fragment() {
     ): View? {
         dashboardViewModel = ViewModelProvider(this).get(MessagesViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_messages, container, false)
+
+        binding.fabNewMessage.setOnClickListener{
+            startActivity(Intent(activity, NewMessage::class.java))
+        }
 
         return root
     }
