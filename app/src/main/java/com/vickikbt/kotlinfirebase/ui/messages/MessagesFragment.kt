@@ -30,6 +30,7 @@ class MessagesFragment : Fragment() {
             startActivity(intent)
         }
 
+
         return binding.root
     }
 

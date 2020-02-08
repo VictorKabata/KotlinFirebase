@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.vickikbt.kotlinfirebase.R
-import com.vickikbt.kotlinfirebase.data.Users
+import com.vickikbt.kotlinfirebase.model.Users
 import com.vickikbt.kotlinfirebase.databinding.ActivityRegisterBinding
 import java.util.*
 
