@@ -58,8 +58,6 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun registerUser() {
-        uploadImageToFirebase()
-
         val username = binding.usernameEditText.text.toString()
         val email = binding.emailEditText.text.toString()
         val password = binding.passwordEdiText.text.toString()
@@ -78,6 +76,8 @@ class RegisterActivity : AppCompatActivity() {
         if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
             return
         }
+
+        uploadImageToFirebase()
 
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
@@ -99,7 +99,8 @@ class RegisterActivity : AppCompatActivity() {
     private fun uploadImageToFirebase() {
         if (selectedPhotoUri == null) return
 
-        val storageRef = FirebaseStorage.getInstance().getReference("/Profile Pictures")
+        val filepath = FirebaseAuth.getInstance().uid?.random()
+        val storageRef = FirebaseStorage.getInstance().getReference("/Profile Pictures/$filepath")
         storageRef.putFile(selectedPhotoUri!!)
             .addOnSuccessListener {
                 Log.e("RegisterActivity", "Profile Picture Uploaded Successfully")
@@ -114,8 +115,8 @@ class RegisterActivity : AppCompatActivity() {
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val databaseRef = FirebaseDatabase.getInstance().getReference("/Users/$uid")
 
-        val email = binding.emailEditText.toString()
-        val username = binding.usernameEditText.toString()
+        val email = binding.emailEditText.text.toString()
+        val username = binding.usernameEditText.text.toString()
 
         val users = Users(username, email, uid, profileImageUrl)
 

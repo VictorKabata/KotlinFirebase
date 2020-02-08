@@ -61,7 +61,7 @@
             android:elevation="10dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:text="@string/register"
+            android:text="@string/login"
             android:textColor="@color/White"
             app:layout_constraintEnd_toEndOf="@+id/passwordContainerLogin"
             app:layout_constraintStart_toStartOf="@+id/passwordContainerLogin"
