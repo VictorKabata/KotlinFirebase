@@ -1,4 +1,4 @@
-package com.vickikbt.kotlinfirebase
+package com.vickikbt.kotlinfirebase.ui
 
 import android.app.Activity
 import android.content.Intent
@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import com.vickikbt.kotlinfirebase.R
 import com.vickikbt.kotlinfirebase.data.Users
 import com.vickikbt.kotlinfirebase.databinding.ActivityRegisterBinding
 import java.util.*
@@ -25,7 +26,9 @@ class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_register)
+        binding = DataBindingUtil.setContentView(this,
+            R.layout.activity_register
+        )
 
         binding.buttonSelectPhoto.setOnClickListener {
             selectPhoto()

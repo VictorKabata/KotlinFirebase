@@ -16,10 +16,11 @@
         android:name="com.vickikbt.kotlinfirebase.ui.messages.DashboardFragment"
         android:label="Messages"
         tools:layout="@layout/fragment_messages" />
-
     <fragment
-        android:id="@+id/navigation_profile"
+        android:id="@+id/profileFragment"
         android:name="com.vickikbt.kotlinfirebase.ui.profile.ProfileFragment"
-        android:label="Profile"
+        android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+
+
 </navigation>

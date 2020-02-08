@@ -1,4 +1,4 @@
-package com.vickikbt.kotlinfirebase
+package com.vickikbt.kotlinfirebase.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.vickikbt.kotlinfirebase.R
 import com.vickikbt.kotlinfirebase.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -16,7 +18,9 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+        binding = DataBindingUtil.setContentView(this,
+            R.layout.activity_login
+        )
 
         binding.goToRegisterTextView.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
@@ -53,4 +57,9 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
+    override fun onStart() {
+        //Check if user had already logged in
+        super.onStart()
+        val currentuser:FirebaseUser= firebaseAuth.currentUser!!
+    }
 }
