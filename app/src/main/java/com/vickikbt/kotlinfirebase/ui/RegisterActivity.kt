@@ -19,14 +19,15 @@ import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityRegisterBinding
+    private lateinit var binding: ActivityRegisterBinding
     private val firebaseAuth = FirebaseAuth.getInstance()
     var selectedPhotoUri: Uri? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,
+        binding = DataBindingUtil.setContentView(
+            this,
             R.layout.activity_register
         )
 
@@ -87,8 +88,7 @@ class RegisterActivity : AppCompatActivity() {
 
                 if (!it.isSuccessful) return@addOnCompleteListener
                 Toast.makeText(this, "Registration Successful!", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, LoginActivity::class.java))
-                finish()
+
             }
             .addOnFailureListener {
                 Log.e("Registration", "Failed to create user because: ${it.message}")
@@ -133,6 +133,8 @@ class RegisterActivity : AppCompatActivity() {
         databaseRef.setValue(users)
             .addOnSuccessListener {
                 Log.e("Registration", "Saved user data to Firebase.")
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
             }
 
     }
