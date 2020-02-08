@@ -28,10 +28,10 @@
 
         <activity android:name=".ui.RegisterActivity" />
 
-        <activity android:name=".ui.NewMessage">
+        <activity android:name=".ui.NewMessageActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.NewMessage" />
+                android:value=".ui.NewMessageActivity" />
         </activity>
     </application>
 

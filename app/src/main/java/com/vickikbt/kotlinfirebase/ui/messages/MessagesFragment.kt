@@ -6,11 +6,9 @@ import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.google.firebase.auth.FirebaseAuth
-import com.vickikbt.kotlinfirebase.ui.NewMessage
+import com.vickikbt.kotlinfirebase.ui.NewMessageActivity
 import com.vickikbt.kotlinfirebase.R
 import com.vickikbt.kotlinfirebase.databinding.FragmentMessagesBinding
-import com.vickikbt.kotlinfirebase.ui.LoginActivity
 
 class MessagesFragment : Fragment() {
 
@@ -26,7 +24,7 @@ class MessagesFragment : Fragment() {
         binding =DataBindingUtil.inflate( inflater, R.layout.fragment_messages, container, false)
 
         binding.fabNewMessage.setOnClickListener{
-            val intent=Intent(activity, NewMessage::class.java)
+            val intent=Intent(activity, NewMessageActivity::class.java)
             startActivity(intent)
         }
 
