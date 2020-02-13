@@ -18,7 +18,8 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,
+        binding = DataBindingUtil.setContentView(
+            this,
             R.layout.activity_login
         )
 
@@ -26,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
-        binding.loginButton.setOnClickListener{
+        binding.loginButton.setOnClickListener {
             loginUser()
             //startActivity(Intent(this, MainActivity::class.java))
         }
@@ -37,10 +38,14 @@ class LoginActivity : AppCompatActivity() {
         val password = binding.passwordLogin.text.toString()
 
         when {
-            email.isEmpty() ->Toast.makeText(this, "Enter Email Address!", Toast.LENGTH_SHORT).show()
-            password.isEmpty() ->Toast.makeText(this, "Enter Password!", Toast.LENGTH_SHORT).show()
+            email.isEmpty() -> Toast.makeText(
+                this,
+                "Enter Email Address!",
+                Toast.LENGTH_SHORT
+            ).show()
+            password.isEmpty() -> Toast.makeText(this, "Enter Password!", Toast.LENGTH_SHORT).show()
         }
-        if (email.isEmpty()||password.isEmpty()){
+        if (email.isEmpty() || password.isEmpty()) {
             return
         }
 
@@ -54,7 +59,11 @@ class LoginActivity : AppCompatActivity() {
             }
             .addOnFailureListener {
                 Log.e("Login", "Failed to login user because: ${it.message}")
-                Toast.makeText(this, "Failed to login user because: ${it.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this,
+                    "Failed to login user because: ${it.message}",
+                    Toast.LENGTH_LONG
+                ).show()
             }
     }
 
