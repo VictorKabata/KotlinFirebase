@@ -13,11 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
-        <activity
-            android:name=".ui.MainActivity"
-            android:label="@string/title_activity_main" />
-
+        <activity android:name=".ui.NewMessage"></activity>
+        <activity android:name=".ui.MainActivity" />
         <activity android:name=".ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,14 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".ui.RegisterActivity" />
-
-        <activity android:name=".ui.NewMessageActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.NewMessageActivity" />
-        </activity>
     </application>
 
 </manifest>
