@@ -2,6 +2,7 @@ package com.vickikbt.kotlinfirebase.ui
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -15,8 +16,6 @@ import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_new_message.*
 
 class NewMessage : AppCompatActivity() {
-
-    val newMessageViewHolder = NewMessageViewHolder()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,14 +33,16 @@ class NewMessage : AppCompatActivity() {
 
                 p0.children.forEach {
                     Log.e("New Message", it.toString())
-                    val user = it.getValue(Users::class.java)
-                    adapter.add(newMessageViewHolder)
+                    val users = it.getValue(Users::class.java)
+                    if (users != null) {
+                        adapter.add(NewMessageViewHolder(users))
+                    }
                 }
                 recyclerview_new_message.adapter = adapter
             }
 
             override fun onCancelled(p0: DatabaseError) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                //Do some shit here
             }
         })
     }

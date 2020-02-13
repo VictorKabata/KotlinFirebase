@@ -70,6 +70,6 @@ class LoginActivity : AppCompatActivity() {
     override fun onStart() { //TODO(02): Comment out check if user had previously signed in.
         //Check if user had already logged in
         super.onStart()
-        val currentuser: FirebaseUser = firebaseAuth.currentUser!!
+        //val currentuser: FirebaseUser = firebaseAuth.currentUser!!
     }
 }
