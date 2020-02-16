@@ -23,7 +23,7 @@ class UsersAdapter(var userList: ArrayList<Users>) :
 
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
         val users = userList[position]
-        holder.textViewUsername?.text = users.Username
+        holder.textViewUsername?.text = users.Email
         //Picasso.get().load(users.ProfileImageUrl).into(holder.imageViewprofilepic)
     }
 
