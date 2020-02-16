@@ -26,7 +26,7 @@ class NewMessage : AppCompatActivity() {
     }
 
     private fun fetchUser() {
-        val databaseRef = FirebaseDatabase.getInstance().getReference("/Users")
+        val databaseRef = FirebaseDatabase.getInstance().getReference("Users")
 
         databaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
