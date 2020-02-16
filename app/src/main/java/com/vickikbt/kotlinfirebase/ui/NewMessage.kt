@@ -27,18 +27,11 @@ class NewMessage : AppCompatActivity() {
 
     private fun fetchUser() {
         val databaseRef = FirebaseDatabase.getInstance().getReference("/Users")
+
         databaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
-                val adapter = GroupAdapter<ViewHolder>()
 
-                p0.children.forEach {
-                    Log.e("New Message", it.toString())
-                    val users = it.getValue(Users::class.java)
-                    if (users != null) {
-                        adapter.add(NewMessageViewHolder(users))
-                    }
-                }
-                recyclerview_new_message.adapter = adapter
+
             }
 
             override fun onCancelled(p0: DatabaseError) {
