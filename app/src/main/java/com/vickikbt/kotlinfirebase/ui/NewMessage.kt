@@ -2,7 +2,6 @@ package com.vickikbt.kotlinfirebase.ui
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -10,10 +9,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.vickikbt.kotlinfirebase.R
 import com.vickikbt.kotlinfirebase.adapter.NewMessageViewHolder
+import com.vickikbt.kotlinfirebase.adapter.UsersAdapter
 import com.vickikbt.kotlinfirebase.model.Users
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.activity_new_message.*
 
 class NewMessage : AppCompatActivity() {
 
@@ -30,7 +27,17 @@ class NewMessage : AppCompatActivity() {
 
         databaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
+                val users = ArrayList<Users>()
+                val adapter = UsersAdapter(users)
 
+                p0.children.forEach {
+                    Log.e("New Message", it.toString())
+                    val user = it.getValue(Users::class.java)
+                    if (user != null) {
+                        uploads.add(upload)
+                        binding.recyclerViewMain.adapter = adapter
+                    }
+                }
 
             }
 
