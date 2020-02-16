@@ -34,7 +34,7 @@ class NewMessage : AppCompatActivity() {
                     Log.e("New Message", it.toString())
                     val user = it.getValue(Users::class.java)
                     if (user != null) {
-                        uploads.add(upload)
+                        users.add(user)
                         binding.recyclerViewMain.adapter = adapter
                     }
                 }
