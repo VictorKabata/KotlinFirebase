@@ -8,7 +8,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.vickikbt.kotlinfirebase.R
-import com.vickikbt.kotlinfirebase.adapter.NewMessageViewHolder
 import com.vickikbt.kotlinfirebase.adapter.UsersAdapter
 import com.vickikbt.kotlinfirebase.model.Users
 
