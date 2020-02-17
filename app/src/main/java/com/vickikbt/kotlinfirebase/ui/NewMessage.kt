@@ -2,6 +2,7 @@ package com.vickikbt.kotlinfirebase.ui
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.firebase.database.*
@@ -9,6 +10,7 @@ import com.vickikbt.kotlinfirebase.R
 import com.vickikbt.kotlinfirebase.adapter.NewMessageAdapter
 import com.vickikbt.kotlinfirebase.databinding.ActivityNewMessageBinding
 import com.vickikbt.kotlinfirebase.model.Users
+import kotlinx.android.synthetic.main.activity_new_message.*
 
 class NewMessage : AppCompatActivity() {
 
@@ -35,13 +37,15 @@ class NewMessage : AppCompatActivity() {
                 p0.children.forEach {
                     Log.e("New Message", it.toString())
                     val user = it.getValue(Users::class.java)
-                    users.add(user!!)
-                    binding.recyclerviewNewMessage.adapter = adapter
+                    if (user != null) {
+                        users.add(user)
+                        recyclerView_users.adapter = adapter
+                    }
                 }
             }
 
             override fun onCancelled(p0: DatabaseError) {
-                //Do some shit here
+                Toast.makeText(applicationContext, "Unable to retrieve data!", Toast.LENGTH_LONG).show()
             }
 
         })
