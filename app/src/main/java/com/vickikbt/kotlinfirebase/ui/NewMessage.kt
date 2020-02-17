@@ -26,7 +26,7 @@ class NewMessage : AppCompatActivity() {
         fetchUsers()
     }
 
-    fun fetchUsers() {
+    private fun fetchUsers() {
         databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 val users = ArrayList<Users>()
@@ -35,10 +35,8 @@ class NewMessage : AppCompatActivity() {
                 p0.children.forEach {
                     Log.e("New Message", it.toString())
                     val user = it.getValue(Users::class.java)
-                    if (user != null) {
-                        users.add(user)
-                        binding.recyclerviewNewMessage.adapter = adapter
-                    }
+                    users.add(user!!)
+                    binding.recyclerviewNewMessage.adapter = adapter
                 }
             }
 
