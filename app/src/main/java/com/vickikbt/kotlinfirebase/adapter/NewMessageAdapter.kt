@@ -9,32 +9,30 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vickikbt.kotlinfirebase.R
 import com.vickikbt.kotlinfirebase.model.Users
 
-class UsersAdapter(var userList: ArrayList<Users>) :
-    RecyclerView.Adapter<UsersAdapter.UsersViewHolder>() {
+class NewMessageAdapter(var usersList: ArrayList<Users>) :
+    RecyclerView.Adapter<NewMessageViewHolder>() {
 
-    override fun getItemCount() = userList.size
+    override fun getItemCount() = usersList.size
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewMessageViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.user_row_new_message, parent, false)
 
-        return UsersViewHolder(view)
+        return NewMessageViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
-        val users = userList[position]
-        holder.textViewUsername?.text = users.Email
-        //Picasso.get().load(users.ProfileImageUrl).into(holder.imageViewprofilepic)
+    override fun onBindViewHolder(holder: NewMessageViewHolder, position: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+}
 
-    class UsersViewHolder(row: View) : RecyclerView.ViewHolder(row) {
-        var textViewUsername: TextView? = null
-        var imageViewprofilepic: ImageView? = null
+class NewMessageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    var textViewUsername: TextView? = null
+    var imageViewProfile: ImageView? = null
 
-        init {
-            this.textViewUsername = row.findViewById(R.id.textView_user)
-            this.imageViewprofilepic = row.findViewById(R.id.imageView_user)
-        }
+    init {
+        this.textViewUsername = view.findViewById(R.id.textView_user)
+        this.imageViewProfile = view.findViewById(R.id.imageView_user)
     }
 }
