@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
 import com.vickikbt.kotlinfirebase.R
 import com.vickikbt.kotlinfirebase.model.Users
 
@@ -24,10 +23,8 @@ class NewMessageAdapter(var usersList: ArrayList<Users>) :
 
     override fun onBindViewHolder(holder: NewMessageViewHolder, position: Int) {
         val users = usersList[position]
-        holder.textViewUsername?.text = "Vicki Kbt"
-        Picasso.get()
-            .load("https://firebasestorage.googleapis.com/v0/b/kotlinfirebase-13e50.appspot.com/o/Profile%20Pictures%2F7b76a011-03d5-4a3d-ac49-06ae3812fc39?alt=media&token=121720ed-f196-416c-be5f-13f3e0241182")
-            .into(holder.imageViewProfile)
+        holder.textViewUsername?.text = users.Username
+        //Picasso.get().load(users.ProfileImageUrl).into(holder.imageViewProfile)
     }
 
 }
