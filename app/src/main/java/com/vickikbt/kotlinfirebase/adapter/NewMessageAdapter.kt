@@ -22,7 +22,8 @@ class NewMessageAdapter(var usersList: ArrayList<Users>) :
     }
 
     override fun onBindViewHolder(holder: NewMessageViewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val users = usersList[position]
+        holder.textViewUsername?.text = users.Username
     }
 
 }
