@@ -1,7 +1,6 @@
 package com.vickikbt.kotlinfirebase.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -16,37 +15,35 @@ class NewMessage : AppCompatActivity() {
 
     lateinit var binding: ActivityNewMessageBinding
     lateinit var databaseRef: DatabaseReference
-    var usersList: ArrayList<Users>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_new_message)
         supportActionBar?.title = "Select User"
         databaseRef = FirebaseDatabase.getInstance().getReference("Users")
-        usersList = ArrayList<Users>()
 
         fetchUsers()
     }
 
     private fun fetchUsers() {
-        databaseRef.addValueEventListener(object : ValueEventListener {
+        databaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
+                recyclerView_users.setHasFixedSize(true)
                 val users = ArrayList<Users>()
-                val adapter = NewMessageAdapter(users)
-
-                p0.children.forEach {
-                    Log.e("New Message", it.toString())
-                    val user = it.getValue(Users::class.java)
-                    if (user != null) {
-                        users.add(user)
-                        recyclerView_users.adapter = adapter
-                        adapter.notifyDataSetChanged()
-                    }
+                val user = p0.getValue(Users::class.java)
+                if (user != null) {
+                    users.add(user)
+                    val adapter = NewMessageAdapter(users)
+                    recyclerView_users.adapter = adapter
+                    adapter.notifyDataSetChanged()
+                    Toast.makeText(applicationContext, "Retrieved user data", Toast.LENGTH_LONG)
+                        .show()
                 }
             }
 
             override fun onCancelled(p0: DatabaseError) {
-                Toast.makeText(applicationContext, "Unable to retrieve data!", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "Unable to retrieve data!", Toast.LENGTH_LONG)
+                    .show()
             }
 
         })
