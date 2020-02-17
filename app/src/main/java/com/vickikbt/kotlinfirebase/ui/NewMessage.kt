@@ -1,7 +1,6 @@
 package com.vickikbt.kotlinfirebase.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -31,18 +30,14 @@ class NewMessage : AppCompatActivity() {
             override fun onDataChange(p0: DataSnapshot) {
                 recyclerView_users.setHasFixedSize(true)
                 val users = ArrayList<Users>()
-
-                p0.children.forEach {
-                    Log.e("New Message", it.toString())
-                    val user = p0.getValue(Users::class.java)
-                    if (user != null) {
-                        users.add(user)
-                        val adapter = NewMessageAdapter(users)
-                        recyclerView_users.adapter = adapter
-                        adapter.notifyDataSetChanged()
-                        Toast.makeText(applicationContext, "Retrieved user data", Toast.LENGTH_LONG)
-                            .show()
-                    }
+                val user = p0.getValue(Users::class.java)
+                if (user != null) {
+                    users.add(user)
+                    val adapter = NewMessageAdapter(users)
+                    recyclerView_users.adapter = adapter
+                    adapter.notifyDataSetChanged()
+                    Toast.makeText(applicationContext, "Retrieved user data", Toast.LENGTH_LONG)
+                        .show()
                 }
             }
 
