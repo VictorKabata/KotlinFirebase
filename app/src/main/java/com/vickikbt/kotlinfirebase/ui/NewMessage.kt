@@ -1,6 +1,7 @@
 package com.vickikbt.kotlinfirebase.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.firebase.database.*
@@ -28,6 +29,11 @@ class NewMessage : AppCompatActivity() {
             override fun onDataChange(p0: DataSnapshot) {
                 val users = ArrayList<Users>()
                 val adapter = NewMessageAdapter(users)
+
+                p0.children.forEach {
+                    Log.e("New Message", it.toString())
+                    val user = it.getValue(Users::class.java)
+                }
             }
 
             override fun onCancelled(p0: DatabaseError) {
