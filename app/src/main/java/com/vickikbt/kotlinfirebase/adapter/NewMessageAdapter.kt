@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import com.vickikbt.kotlinfirebase.R
 import com.vickikbt.kotlinfirebase.model.Users
 
@@ -24,6 +25,7 @@ class NewMessageAdapter(var usersList: ArrayList<Users>) :
     override fun onBindViewHolder(holder: NewMessageViewHolder, position: Int) {
         val users = usersList[position]
         holder.textViewUsername?.text = users.Username
+        Picasso.get().load(users.ProfileImageUrl).into(holder.imageViewProfile)
     }
 
 }
