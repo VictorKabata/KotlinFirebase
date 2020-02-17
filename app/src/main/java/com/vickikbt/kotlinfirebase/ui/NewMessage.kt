@@ -40,6 +40,7 @@ class NewMessage : AppCompatActivity() {
                     if (user != null) {
                         users.add(user)
                         recyclerView_users.adapter = adapter
+                        adapter.notifyDataSetChanged()
                     }
                 }
             }
