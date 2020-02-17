@@ -14,12 +14,14 @@ class NewMessage : AppCompatActivity() {
 
     lateinit var binding: ActivityNewMessageBinding
     lateinit var databaseRef: DatabaseReference
+    var usersList: ArrayList<Users>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_new_message)
         supportActionBar?.title = "Select User"
         databaseRef = FirebaseDatabase.getInstance().getReference("Users")
+        usersList = ArrayList<Users>()
 
         fetchUsers()
     }
