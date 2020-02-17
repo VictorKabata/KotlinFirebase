@@ -10,7 +10,7 @@
         tools:context=".ui.NewMessage">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview_new_message"
+            android:id="@+id/recyclerView_users"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
