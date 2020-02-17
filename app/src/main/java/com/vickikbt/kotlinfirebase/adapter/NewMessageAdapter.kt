@@ -25,7 +25,7 @@ class NewMessageAdapter(var usersList: ArrayList<Users>) :
     override fun onBindViewHolder(holder: NewMessageViewHolder, position: Int) {
         val users = usersList[position]
         holder.textViewUsername?.text = users.Username
-        //Picasso.get().load(users.ProfileImageUrl).into(holder.imageViewProfile)
+        Picasso.get().load(users.ProfileImageUrl).into(holder.imageViewProfile)
     }
 
 }
