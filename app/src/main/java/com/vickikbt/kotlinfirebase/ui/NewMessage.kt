@@ -33,6 +33,10 @@ class NewMessage : AppCompatActivity() {
                 p0.children.forEach {
                     Log.e("New Message", it.toString())
                     val user = it.getValue(Users::class.java)
+                    if (user != null) {
+                        users.add(user)
+                        binding.recyclerviewNewMessage.adapter = adapter
+                    }
                 }
             }
 
