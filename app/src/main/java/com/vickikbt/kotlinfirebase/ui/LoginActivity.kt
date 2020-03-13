@@ -59,11 +59,7 @@ class LoginActivity : AppCompatActivity() {
             }
             .addOnFailureListener {
                 Log.e("Login", "Failed to login user because: ${it.message}")
-                Toast.makeText(
-                    this,
-                    "Failed to login user because: ${it.message}",
-                    Toast.LENGTH_LONG
-                ).show()
+                Toast.makeText(this, "Failed to login user because: ${it.message}", Toast.LENGTH_LONG).show()
             }
     }
 
