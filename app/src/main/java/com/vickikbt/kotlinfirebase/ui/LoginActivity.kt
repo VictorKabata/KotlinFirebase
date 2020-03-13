@@ -29,10 +29,10 @@ class LoginActivity : AppCompatActivity() {
 
         binding.loginButton.setOnClickListener {
             loginUser()
-            //startActivity(Intent(this, MainActivity::class.java))
         }
     }
 
+    //Function to check email and password edittext and compare to data in firebase authentication.
     private fun loginUser() {
         val email = binding.emailAddressLogin.text.toString()
         val password = binding.passwordLogin.text.toString()
@@ -67,6 +67,7 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
+    //Function to check if the user has already signed in
     override fun onStart() {
         super.onStart()
         val currentUser = firebaseAuth.currentUser
