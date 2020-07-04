@@ -20,7 +20,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginEnd="254dp"
         android:text="@string/username"
-        android:textColor="@android:color/black"
+        android:textColor="#000"
         android:textSize="16sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_user"
